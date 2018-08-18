@@ -1,3 +1,5 @@
+import api from './api';
+
 export default {
   namespaced: true,
 
@@ -57,6 +59,22 @@ export default {
         // remove 1 item from stock
         commit('products/decrementProductInventory', { id: product.id }, { root: true });
       }
+    },
+
+    checkout({ commit, state }, products) {
+      const savedCartItems = [...state.items];
+      commit('setCheckoutStatus', null);
+      // empty cart
+      commit('setCartItems', { items: [] });
+      api.buyProducts(
+        products,
+        () => commit('setCheckoutStatus', 'successful'),
+        () => {
+          commit('setCheckoutStatus', 'failed');
+          // rollback to the cart saved before sending the request
+          commit('setCartItems', { items: savedCartItems });
+        },
+      );
     },
   },
 };
