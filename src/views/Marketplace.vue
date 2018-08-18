@@ -7,11 +7,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   computed: {
-    products() {
-      return this.$store.state.products.all;
-    },
+    ...mapState({
+      products: state => state.products.all,
+    }),
   },
 };
 </script>
