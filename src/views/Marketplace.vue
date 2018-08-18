@@ -12,9 +12,6 @@
 
     <cart-summary></cart-summary>
 
-    <hr>
-
-    <cart></cart>
   </section>
 </template>
 
