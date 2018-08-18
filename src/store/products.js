@@ -16,13 +16,23 @@ export default {
       },
     ],
   },
-  mutations: {
 
-  },
-  actions: {
-
-  },
   getters: {
     getProductById: state => id => state.all.find(item => item.id === id),
+  },
+
+  mutations: {
+    setProducts(state, products) {
+      state.all = products;
+    },
+
+    decrementProductInventory(state, { id }) {
+      const product = state.all.find(item => item.id === id);
+      product.inventory -= 1;
+    },
+  },
+
+  actions: {
+
   },
 };
