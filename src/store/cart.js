@@ -3,14 +3,14 @@ export default {
 
   state: {
     status: null, // null, successful, failed
-    items: [], //  [{ productId, quantity }]
+    items: [], //  [{ id, quantity }]
   },
 
   getters: {
     cartProducts: (state, getters, rootState) => state.items.map(({ id, quantity }) => {
       const product = rootState.products.all.find(item => item.id === id);
       return {
-        title: product.title,
+        name: product.name,
         price: product.price,
         quantity,
       };
@@ -18,7 +18,7 @@ export default {
 
     cartTotalPrice: (state, getters) => getters.cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0), /* eslint-disable-line max-len */
 
-    cartTotalItems: (state, getters) => getters.cartProducts.reduce((total, product) => product.quantity, 0), /* eslint-disable-line max-len */
+    cartTotalItems: (state, getters) => getters.cartProducts.reduce((total, product) => total + product.quantity, 0), /* eslint-disable-line max-len */
   },
 
   mutations: {
