@@ -17,6 +17,8 @@ export default {
     }),
 
     cartTotalPrice: (state, getters) => getters.cartProducts.reduce((total, product) => total + (product.price * product.quantity), 0), /* eslint-disable-line max-len */
+
+    cartTotalItems: (state, getters) => getters.cartProducts.reduce((total, product) => product.quantity, 0), /* eslint-disable-line max-len */
   },
 
   mutations: {
@@ -44,6 +46,7 @@ export default {
   actions: {
     addProductToCart({ state, commit }, product) {
       commit('setCheckoutStatus', null);
+
       if (product.inventory > 0) {
         const cartItem = state.items.find(item => item.id === product.id);
         if (!cartItem) {

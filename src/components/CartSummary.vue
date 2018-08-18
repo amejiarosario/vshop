@@ -2,7 +2,7 @@
 import { mapGetters } from 'vuex';
 <template>
   <span class="cart-summary">
-    {{ products.length }} items for ${{ total }}
+    {{ totalItems }} items for ${{ totalPrice }}
   </span>
 </template>
 
@@ -15,7 +15,8 @@ export default {
   computed: {
     ...mapGetters('cart', {
       products: 'cartProducts',
-      total: 'cartTotalPrice',
+      totalPrice: 'cartTotalPrice',
+      totalItems: 'cartTotalItems',
     }),
   },
 };
