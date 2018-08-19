@@ -1,4 +1,4 @@
-# vshop
+# vShop
 
 ## Project setup
 ```
@@ -29,3 +29,10 @@ npm run test:unit
 ```
 npm run test:e2e
 ```
+
+## Modularization ideas
+
+vCart- Cart and products functionality
+
+- Vuex: Cart, Products
+- Vue: Cart, CartSummary

@@ -25,3 +25,12 @@ alert('foo');
 console.log('bar');
 /* eslint-enable no-alert */
 ```
+
+## Braintree payments
+
+Sandbox credit card:
+
+- Card number: 4111 1111 1111 1111
+- Expiry: 09/20
+- CVV: 400
+- Postal Code: 40000
