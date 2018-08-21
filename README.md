@@ -36,3 +36,7 @@ vCart- Cart and products functionality
 
 - Vuex: Cart, Products
 - Vue: Cart, CartSummary
+
+## Deployment
+
+TBD
