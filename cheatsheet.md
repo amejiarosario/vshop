@@ -44,3 +44,11 @@ Deploy to heroku just a folder
 ```bash
 git subtree push --prefix server heroku master
 ```
+
+Set .env to heroku
+
+```bash
+# https://github.com/escaladesports/heroku-dotenv
+heroku-dotenv push
+heroku conig # check
+```
