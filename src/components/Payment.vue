@@ -45,7 +45,7 @@ export default {
       .then((dropinInstance) => {
         this.dropinInstance = dropinInstance;
       })
-      .catch(error => console.log(error));
+      .catch(error => this.$emit('error', error));
   },
 
   methods: {
@@ -59,7 +59,6 @@ export default {
           this.$emit('success', response.data.transaction);
         })
         .catch((error) => {
-          console.error(error);
           this.$emit('error', error);
         });
     },

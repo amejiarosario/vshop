@@ -1,4 +1,5 @@
 // Credits: borrowed code from fcomb/redux-logger
+/* eslint-disable no-console */
 
 import { deepCopy } from './util';
 

@@ -82,7 +82,6 @@ export default {
     paymentReceived({ commit }, transaction) {
       commit('setCheckoutStatus', { status: 'successful', details: transaction.id });
       commit('setCartItems', { items: [] });
-      console.log({ transaction });
     },
 
     paymentFailed({ commit }, error) {
