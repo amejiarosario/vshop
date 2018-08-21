@@ -4,8 +4,9 @@ export default {
   namespaced: true,
 
   state: {
-    status: null, // null, successful, failed
     items: [], //  [{ id, quantity }]
+    status: null, // null, successful, failed
+    details: null, // status details
   },
 
   getters: {
@@ -40,14 +41,15 @@ export default {
       state.items = items;
     },
 
-    setCheckoutStatus(state, status) {
+    setCheckoutStatus(state, { status, details }) {
       state.status = status;
+      state.details = details;
     },
   },
 
   actions: {
     addProductToCart({ state, commit }, product) {
-      commit('setCheckoutStatus', null);
+      commit('setCheckoutStatus', { status: null });
 
       if (product.inventory > 0) {
         const cartItem = state.items.find(item => item.id === product.id);
@@ -63,18 +65,28 @@ export default {
 
     checkout({ commit, state }, products) {
       const savedCartItems = [...state.items];
-      commit('setCheckoutStatus', null);
+      commit('setCheckoutStatus', { status: null });
       // empty cart
       commit('setCartItems', { items: [] });
       api.buyProducts(
         products,
-        () => commit('setCheckoutStatus', 'successful'),
+        () => commit('setCheckoutStatus', { status: 'successful' }),
         () => {
-          commit('setCheckoutStatus', 'failed');
+          commit('setCheckoutStatus', { status: 'failed' });
           // rollback to the cart saved before sending the request
           commit('setCartItems', { items: savedCartItems });
         },
       );
+    },
+
+    paymentReceived({ commit }, transaction) {
+      commit('setCheckoutStatus', { status: 'successful', details: transaction.id });
+      commit('setCartItems', { items: [] });
+      console.log({ transaction });
+    },
+
+    paymentFailed({ commit }, error) {
+      commit('setCheckoutStatus', { status: 'failed', details: error.message });
     },
   },
 };

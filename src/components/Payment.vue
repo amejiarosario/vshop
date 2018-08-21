@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div id="dropin-container"></div>
-    <button @click="pay">Checkout with Braintree</button>
+    <div id="dropin-container" v-show="unpaid && amount > 0"></div>
+    <button @click="pay" :disabled="amount <= 0">Checkout</button>
   </section>
 </template>
 
@@ -22,9 +22,9 @@ export default {
 
   data() {
     return {
-      // instance: dropin.create({ /* options */ }),
       clientToken: null,
       errors: null,
+      unpaid: true,
     };
   },
 
@@ -54,8 +54,14 @@ export default {
         .then(payload => axios.post('http://localhost:3000/braintree/sale', {
           nonce: payload.nonce,
           amount: this.amount,
-        }))
-        .catch(error => console.error(error));
+        })).then((response) => {
+          this.unpaid = false;
+          this.$emit('success', response.data.transaction);
+        })
+        .catch((error) => {
+          console.error(error);
+          this.$emit('error', error);
+        });
     },
   },
 };

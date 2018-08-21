@@ -18,8 +18,10 @@
 
     <div>
       <!-- <button @click="checkout(products)">Checkout</button> -->
-      <!-- <span v-show="status"> Checkout: {{ status }}</span> -->
-      <payment :amount="cartTotalPrice"></payment>
+      <payment :amount="cartTotalPrice"
+               @error="paymentFailed"
+               @success="paymentReceived"></payment>
+      <span v-show="status"> {{ status }}. {{ details }}</span>
     </div>
   </section>
 </template>
@@ -38,6 +40,7 @@ export default {
   computed: {
     ...mapState('cart', [
       'status',
+      'details',
     ]),
     ...mapGetters('cart', {
       products: 'cartProducts',
@@ -48,7 +51,8 @@ export default {
 
   methods: {
     ...mapActions('cart', [
-      'checkout',
+      'paymentReceived',
+      'paymentFailed',
     ]),
   },
 };
