@@ -34,3 +34,7 @@ Sandbox credit card:
 - Expiry: 09/20
 - CVV: 400
 - Postal Code: 40000
+
+## Deployment
+
+https://cli.vuejs.org/guide/deployment.html#general-guidelines
