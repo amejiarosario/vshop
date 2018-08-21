@@ -17,17 +17,23 @@
     </table>
 
     <div>
-      <button @click="checkout(products)">Checkout</button>
-      <span v-show="status"> Checkout: {{ status }}</span>
+      <!-- <button @click="checkout(products)">Checkout</button> -->
+      <!-- <span v-show="status"> Checkout: {{ status }}</span> -->
+      <payment></payment>
     </div>
   </section>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapState } from 'vuex';
+import Payment from '@/components/Payment.vue';
 
 export default {
   name: 'cart',
+
+  components: {
+    Payment,
+  },
 
   computed: {
     ...mapState('cart', [
