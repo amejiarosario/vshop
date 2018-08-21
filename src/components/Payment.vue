@@ -13,6 +13,13 @@ import axios from 'axios';
 export default {
   name: 'payment',
 
+  props: {
+    amount: {
+      type: Number,
+      required: true,
+    },
+  },
+
   data() {
     return {
       // instance: dropin.create({ /* options */ }),
@@ -44,7 +51,10 @@ export default {
   methods: {
     pay() {
       this.dropinInstance.requestPaymentMethod()
-        .then(payload => console.log({ payload }))
+        .then(payload => axios.post('http://localhost:3000/braintree/sale', {
+          nonce: payload.nonce,
+          amount: this.amount,
+        }))
         .catch(error => console.error(error));
     },
   },

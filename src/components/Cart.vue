@@ -19,7 +19,7 @@
     <div>
       <!-- <button @click="checkout(products)">Checkout</button> -->
       <!-- <span v-show="status"> Checkout: {{ status }}</span> -->
-      <payment></payment>
+      <payment :amount="cartTotalPrice"></payment>
     </div>
   </section>
 </template>
