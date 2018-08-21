@@ -1,7 +1,7 @@
 <template>
   <section>
     <div id="dropin-container"></div>
-    <button id="submit-button">Checkout with Braintree</button>
+    <button @click="pay">Checkout with Braintree</button>
   </section>
 </template>
 
@@ -27,7 +27,7 @@ export default {
       .then((response) => {
         const { clientToken } = response.data;
 
-        dropin.create({
+        return dropin.create({
           authorization: clientToken,
           container: '#dropin-container',
           paypal: {
@@ -35,7 +35,18 @@ export default {
           },
         });
       })
+      .then((dropinInstance) => {
+        this.dropinInstance = dropinInstance;
+      })
       .catch(error => console.log(error));
+  },
+
+  methods: {
+    pay() {
+      this.dropinInstance.requestPaymentMethod()
+        .then(payload => console.log({ payload }))
+        .catch(error => console.error(error));
+    },
   },
 };
 </script>
