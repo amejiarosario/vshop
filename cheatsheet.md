@@ -38,3 +38,9 @@ Sandbox credit card:
 ## Deployment
 
 https://cli.vuejs.org/guide/deployment.html#general-guidelines
+
+Deploy to heroku just a folder
+
+```bash
+git subtree push --prefix server heroku master
+```
