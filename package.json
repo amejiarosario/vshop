@@ -4,11 +4,16 @@
   "private": true,
   "scripts": {
     "start": "npm run serve",
+
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+
     "test:unit": "vue-cli-service test:unit",
-    "test:e2e": "vue-cli-service test:e2e"
+    "test:e2e": "vue-cli-service test:e2e",
+
+    "deploy:server": "git subtree push --prefix server heroku master",
+    "deploy:client": "git push origin $(git_current_branch) # netlify"
   },
   "dependencies": {
     "axios": "0.18.0",
