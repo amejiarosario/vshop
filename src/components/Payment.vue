@@ -30,7 +30,7 @@ export default {
 
   mounted() {
     axios
-      .get(process.env.VUE_APP_CLIENT_TOKEN_ENDPOINT)
+      .get(`${process.env.VUE_APP_SERVER_ENDPOINT}/braintree/token`)
       .then((response) => {
         const { clientToken } = response.data;
 
@@ -51,7 +51,7 @@ export default {
   methods: {
     pay() {
       this.dropinInstance.requestPaymentMethod()
-        .then(payload => axios.post(process.env.VUE_APP_SALE_ENDPOINT, {
+        .then(payload => axios.post(`${process.env.VUE_APP_SERVER_ENDPOINT}/braintree/sale`, {
           nonce: payload.nonce,
           amount: this.amount,
         })).then((response) => {
