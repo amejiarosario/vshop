@@ -59,3 +59,7 @@ Client side env variables
 
 - `vue-cli-service build` builds a production app, loading .env, .env.production and .env.production.local if they are present
 - `vue-cli-service build --mode staging` builds a production app in staging mode, using .env, .env.staging and .env.staging.local if they are present.
+
+# Netlify
+
+Since .env is not checked in, then use the following to setup the env variable:

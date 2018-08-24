@@ -3,21 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run serve",
-
+    "start": "concurrently 'npm run serve' 'cd server && npm start'",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-
     "deploy:server": "git subtree push --prefix server heroku master",
     "deploy:client": "git push origin $(git_current_branch) # netlify"
   },
   "dependencies": {
     "axios": "0.18.0",
     "braintree-web-drop-in": "1.12.0",
+    "concurrently": "4.0.0",
     "register-service-worker": "^1.0.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
