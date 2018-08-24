@@ -2,12 +2,13 @@
   <section>
     <div id="dropin-container" v-show="unpaid && amount > 0"></div>
     <button @click="pay" :disabled="amount <= 0">Checkout</button>
+    <script src="https://js.braintreegateway.com/web/dropin/1.12.0/js/dropin.min.js"></script>
   </section>
 </template>
 
 <script>
 // https://developers.braintreepayments.com/guides/drop-in/setup-and-integration/javascript/v3
-import dropin from 'braintree-web-drop-in';
+import dropin from 'braintree-web-drop-in'; // this causes the build to complain
 import axios from 'axios';
 
 export default {

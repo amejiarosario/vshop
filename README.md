@@ -40,3 +40,25 @@ vCart- Cart and products functionality
 ## Deployment
 
 TBD
+
+## Known Issues
+
+### `braintree-web-drop-in` causes performance issues.
+
+```bash
+ warning
+
+asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+This can impact web performance.
+Assets:
+  js/chunk-vendors.45ea41df.js (421 KiB)
+
+ warning
+
+entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+Entrypoints:
+  app (432 KiB)
+      js/chunk-vendors.45ea41df.js
+      css/app.3995da3a.css
+      js/app.5b55acfb.js
+```
