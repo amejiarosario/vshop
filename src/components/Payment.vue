@@ -2,7 +2,6 @@
   <section>
     <div id="dropin-container" v-show="unpaid && amount > 0"></div>
     <button @click="pay" :disabled="amount <= 0">Checkout</button>
-    <script src="https://js.braintreegateway.com/web/dropin/1.12.0/js/dropin.min.js"></script>
   </section>
 </template>
 
