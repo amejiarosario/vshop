@@ -2,7 +2,14 @@
 import { mapGetters } from 'vuex';
 <template>
   <span class="cart-summary">
-    {{ totalItems }} items for ${{ totalPrice }}
+    <router-link to="/checkout">
+      <v-badge right overlap color="orange">
+        <span slot="badge" v-if="totalItems">{{ totalItems }}</span>
+        <v-icon>
+          shopping_cart
+        </v-icon>
+      </v-badge>
+    </router-link>
   </span>
 </template>
 
