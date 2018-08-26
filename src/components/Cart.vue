@@ -1,20 +1,30 @@
 <template>
   <section class="cart">
-    <table>
-      <tbody>
-        <tr v-for="product in products" :key="product.id">
-          <td>{{ product.quantity }} x {{ product.name }}</td>
-          <td>{{ product.price | currency }}</td>
-        </tr>
-      </tbody>
 
-      <tfoot>
-        <tr>
-          <td>Total of {{ cartTotalItems }} items for</td>
-          <td>{{ cartTotalPrice | currency }}</td>
-        </tr>
-      </tfoot>
-    </table>
+    <v-data-table
+      :headers="headers"
+      :items="products"
+      hide-actions
+      class="elevation-1">
+
+      <template slot="items" slot-scope="props">
+        <td>{{ props.item.name }}</td>
+        <!-- <td class="text-xs-right">{{ props.item.description }}</td> -->
+        <td>{{ props.item.quantity }}</td>
+        <td>{{ props.item.price | currency }}</td>
+        <td>{{ props.item.subtotal | currency }}</td>
+      </template>
+
+    <template slot="footer">
+      <td colspan="3">
+        <strong>Total</strong>
+      </td>
+      <td colspan="1">
+        <strong>{{ cartTotalPrice | currency }}</strong>
+      </td>
+    </template>
+
+    </v-data-table>
 
     <div>
       <!-- <button @click="checkout(products)">Checkout</button> -->
@@ -32,6 +42,18 @@ import Payment from '@/components/Payment.vue';
 
 export default {
   name: 'cart',
+
+  data() {
+    return {
+      headers: [
+        { text: 'Name', value: 'name' },
+        // { text: 'Description', value: 'Description' },
+        { text: 'quantity', value: 'quantity' },
+        { text: 'price', value: 'price' },
+        { text: 'subtotal', value: 'subtotal' },
+      ],
+    };
+  },
 
   components: {
     Payment,

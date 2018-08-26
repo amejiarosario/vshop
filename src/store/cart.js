@@ -16,6 +16,7 @@ export default {
         name: product.name,
         price: product.price,
         quantity,
+        subtotal: product.price * quantity,
       };
     }),
 
