@@ -4,14 +4,14 @@
       <tbody>
         <tr v-for="product in products" :key="product.id">
           <td>{{ product.quantity }} x {{ product.name }}</td>
-          <td>${{ product.price }}</td>
+          <td>{{ product.price | currency }}</td>
         </tr>
       </tbody>
 
       <tfoot>
         <tr>
           <td>Total of {{ cartTotalItems }} items for</td>
-          <td>${{ cartTotalPrice }}</td>
+          <td>{{ cartTotalPrice | currency }}</td>
         </tr>
       </tfoot>
     </table>
