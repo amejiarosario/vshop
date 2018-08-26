@@ -27,7 +27,10 @@
             <v-btn flat color="accent"
               :disabled="!product.inventory"
               @click="addProductToCart(product)">
-              Add to Cart
+
+              <span v-if="product.inventory">Add to Cart</span>
+              <span v-else style="text-decoration: line-through">Sold out</span>
+
             </v-btn>
           </v-card-actions>
         </v-card>
