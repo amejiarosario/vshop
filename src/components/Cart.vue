@@ -48,9 +48,9 @@ export default {
       headers: [
         { text: 'Name', value: 'name' },
         // { text: 'Description', value: 'Description' },
-        { text: 'quantity', value: 'quantity' },
-        { text: 'price', value: 'price' },
-        { text: 'subtotal', value: 'subtotal' },
+        { text: 'Quantity', value: 'quantity' },
+        { text: 'Price', value: 'price' },
+        { text: 'Subtotal', value: 'subtotal' },
       ],
     };
   },
